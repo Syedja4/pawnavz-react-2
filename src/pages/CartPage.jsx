@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useCartActions, useCartItems, useCartSummary } from '../context/CartContext'
 import { useToastActions } from '../context/ToastContext'
+import { FaShoppingCart } from 'react-icons/fa'
 
 export default function CartPage() {
   const navigate = useNavigate()
@@ -27,7 +28,7 @@ export default function CartPage() {
     return (
       <div className="page">
         <div className="container section" style={{ textAlign: 'center', padding: '80px 24px' }}>
-          <div style={{ fontSize: 72, marginBottom: 20 }}>🛒</div>
+          <div style={{ fontSize: 72, marginBottom: 20, color: 'var(--brand)' }}><FaShoppingCart aria-hidden="true" /></div>
           <h2 className="h-md" style={{ marginBottom: 12 }}>Your cart is empty</h2>
           <p className="text-muted" style={{ marginBottom: 24 }}>Looks like you haven't added anything yet</p>
           <button className="btn btn-primary" onClick={() => navigate('/shop')}>Start Shopping →</button>

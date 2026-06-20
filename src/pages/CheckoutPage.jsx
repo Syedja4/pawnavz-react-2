@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useCartActions, useCartItems, useCartSummary } from '../context/CartContext'
+import { FaCreditCard, FaMobileAlt, FaUniversity, FaMoneyBillWave, FaTruck, FaLock } from 'react-icons/fa'
 
 const PAYMENT_METHODS = [
-  ['razorpay', '💳 Razorpay'],
-  ['upi', '📱 UPI'],
-  ['netbanking', '🏦 Net Banking'],
-  ['cod', '💰 Cash on Delivery'],
+  ['razorpay', FaCreditCard, 'Razorpay'],
+  ['upi', FaMobileAlt, 'UPI'],
+  ['netbanking', FaUniversity, 'Net Banking'],
+  ['cod', FaMoneyBillWave, 'Cash on Delivery'],
 ]
 
 export default function CheckoutPage() {
@@ -86,8 +87,8 @@ export default function CheckoutPage() {
               {step === 2 && (
                 <div style={{ padding: 24 }}>
                   <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 20 }}>
-                    {PAYMENT_METHODS.map(([value, label]) => (
-                      <div key={value} className={`pm-option${pm === value ? ' selected' : ''}`} onClick={() => setPm(value)}>{label}</div>
+                    {PAYMENT_METHODS.map(([value, Icon, label]) => (
+                      <div key={value} className={`pm-option${pm === value ? ' selected' : ''}`} onClick={() => setPm(value)} style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}><Icon aria-hidden="true" style={{ flexShrink: 0 }} /> {label}</div>
                     ))}
                   </div>
                   {pm !== 'cod' ? (
@@ -99,7 +100,7 @@ export default function CheckoutPage() {
                     </div>
                   ) : (
                     <div className="card card-p" style={{ background: 'var(--surface2)', textAlign: 'center', marginBottom: 20 }}>
-                      <div style={{ fontSize: 32, marginBottom: 8 }}>🚚</div>
+                      <div style={{ fontSize: 32, marginBottom: 8, color: 'var(--brand)' }}><FaTruck aria-hidden="true" /></div>
                       <div className="h-sm" style={{ marginBottom: 4 }}>Cash on Delivery</div>
                       <p className="text-muted" style={{ fontSize: 13 }}>Pay when your order arrives. Available up to ₹5,000</p>
                     </div>
@@ -107,7 +108,7 @@ export default function CheckoutPage() {
                   <button className="btn btn-primary" style={{ marginTop: 8 }} onClick={handlePlaceOrder}>
                     Place Order · ₹{total.toLocaleString('en-IN')} →
                   </button>
-                  <p style={{ fontSize: 11, color: 'var(--text3)', marginTop: 10 }}>🔒 256-bit SSL encrypted · Your payment is secure</p>
+                  <p style={{ fontSize: 11, color: 'var(--text3)', marginTop: 10, display: 'inline-flex', alignItems: 'center', gap: 6 }}><FaLock aria-hidden="true" style={{ flexShrink: 0 }} /> 256-bit SSL encrypted · Your payment is secure</p>
                 </div>
               )}
             </div>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { FaLock } from 'react-icons/fa'
 
 export default function CtaBlock({ btnText = 'Notify Me', onSuccess }) {
   const [email, setEmail] = useState('')
@@ -31,7 +32,7 @@ export default function CtaBlock({ btnText = 'Notify Me', onSuccess }) {
         />
         <button className="cta-notify-btn" onClick={submit}>{btnText}</button>
       </div>
-      <p style={{ fontSize: 12, color: 'var(--text3)', marginTop: 12 }}>No spam, ever. 🔒</p>
+      <p style={{ fontSize: 12, color: 'var(--text3)', marginTop: 12, display: 'inline-flex', alignItems: 'center', gap: 6 }}>No spam, ever. <FaLock aria-hidden="true" style={{ flexShrink: 0 }} /></p>
     </>
   )
 }

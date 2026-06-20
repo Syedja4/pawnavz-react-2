@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useCartActions, useCartSummary } from '../context/CartContext'
 import { useTheme } from '../context/ThemeContext'
+import { FaMoon, FaSun, FaUser, FaShoppingCart, FaBars } from 'react-icons/fa'
 
 const NAV_LINKS = [
   ['/', 'Home'],
@@ -86,16 +87,16 @@ export default function Navbar() {
 
         <div className="nav-actions">
           <div className="theme-toggle">
-            <button className={`theme-btn${theme === 'dark' ? ' active' : ''}`} onClick={() => setTheme('dark')}>🌙</button>
-            <button className={`theme-btn${theme === 'light' ? ' active' : ''}`} onClick={() => setTheme('light')}>☀️</button>
+            <button className={`theme-btn${theme === 'dark' ? ' active' : ''}`} onClick={() => setTheme('dark')}><FaMoon aria-hidden="true" /></button>
+            <button className={`theme-btn${theme === 'light' ? ' active' : ''}`} onClick={() => setTheme('light')}><FaSun aria-hidden="true" /></button>
           </div>
-          <button className="nav-icon-btn" onClick={() => go('/auth')}>👤</button>
+          <button className="nav-icon-btn" onClick={() => go('/auth')}><FaUser aria-hidden="true" /></button>
           <button className="nav-icon-btn" onClick={openCart} style={{ position: 'relative' }}>
-            🛒
+            <FaShoppingCart aria-hidden="true" />
             {cartCount > 0 && <span className="nav-badge">{cartCount}</span>}
           </button>
           <button className="hamburger" onClick={() => setMenuOpen((open) => !open)}>
-            {menuOpen ? '✕' : '☰'}
+            {menuOpen ? '✕' : <FaBars aria-hidden="true" />}
           </button>
         </div>
       </nav>
@@ -112,8 +113,8 @@ export default function Navbar() {
             <button className="btn btn-primary btn-w-full" onClick={() => go('/auth')}>Sign In</button>
           </div>
           <div style={{ marginTop: 16, display: 'flex', gap: 10, justifyContent: 'center' }}>
-            <button className="btn btn-ghost btn-sm" onClick={() => setTheme('dark')}>🌙 Dark</button>
-            <button className="btn btn-ghost btn-sm" onClick={() => setTheme('light')}>☀️ Light</button>
+            <button className="btn btn-ghost btn-sm" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }} onClick={() => setTheme('dark')}><FaMoon aria-hidden="true" /> Dark</button>
+            <button className="btn btn-ghost btn-sm" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }} onClick={() => setTheme('light')}><FaSun aria-hidden="true" /> Light</button>
           </div>
         </div>
       )}

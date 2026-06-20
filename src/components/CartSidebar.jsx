@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useCartActions, useCartItems, useCartSummary, useCartUi } from '../context/CartContext'
+import { FaShoppingCart } from 'react-icons/fa'
 
 export default function CartSidebar() {
   const navigate = useNavigate()
@@ -31,7 +32,7 @@ export default function CartSidebar() {
         <div className="cart-body">
           {cart.length === 0 ? (
             <div className="cart-empty">
-              <div style={{ fontSize: 56, marginBottom: 16 }}>🛒</div>
+              <div style={{ fontSize: 56, marginBottom: 16, color: 'var(--brand)' }}><FaShoppingCart aria-hidden="true" /></div>
               <div className="h-sm" style={{ marginBottom: 8 }}>Your cart is empty</div>
               <p className="text-muted" style={{ fontSize: 14, marginBottom: 20 }}>Add some products to get started</p>
               <button className="btn btn-primary btn-sm" onClick={() => go('/shop')}>Browse Shop</button>

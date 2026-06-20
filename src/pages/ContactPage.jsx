@@ -1,15 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useToast } from '../context/ToastContext'
+import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaComments } from 'react-icons/fa'
+import Dropdown from '../components/Dropdown'
 
 const CONTACT_INFO = [
-  ['\u{1F4E7}', 'Email Us', 'hello@pawnavz.com', 'For general inquiries and support'],
-  ['\u{1F4DE}', 'Call Us', '+91 80 4567 8900', 'Mon\u2013Sat, 9AM\u20136PM IST'],
-  ['\u{1F4CD}', 'Visit Us', '91springboard, Kormangala, Bengaluru', 'Open for scheduled visits'],
-  ['\u{1F4AC}', 'Live Chat', 'Available on app', 'Average response: under 5 minutes'],
+  [FaEnvelope, 'Email Us', 'hello@pawnavz.com', 'For general inquiries and support'],
+  [FaPhoneAlt, 'Call Us', '+91 80 4567 8900', 'Mon\u2013Sat, 9AM\u20136PM IST'],
+  [FaMapMarkerAlt, 'Visit Us', '91springboard, Kormangala, Bengaluru', 'Open for scheduled visits'],
+  [FaComments, 'Live Chat', 'Available on app', 'Average response: under 5 minutes'],
+]
+
+const SUBJECTS = [
+  { value: 'general', label: 'General Inquiry' },
+  { value: 'order', label: 'Order Support' },
+  { value: 'feedback', label: 'Product Feedback' },
+  { value: 'partnership', label: 'Partnership' },
+  { value: 'press', label: 'Press / Media' },
 ]
 
 export default function ContactPage() {
   const { showToast } = useToast()
+  const [subject, setSubject] = useState('general')
   return (
     <div className="page">
       <div className="container section">
@@ -20,9 +31,9 @@ export default function ContactPage() {
         </div>
         <div className="grid-2" style={{ gap: 40, alignItems: 'start' }}>
           <div>
-            {CONTACT_INFO.map(([icon, title, val, sub]) => (
+            {CONTACT_INFO.map(([Icon, title, val, sub]) => (
               <div key={title} className="contact-info-item">
-                <div className="ci-icon">{icon}</div>
+                <div className="ci-icon" style={{ background: 'var(--brand)', color: '#fff', boxShadow: '0 6px 16px rgba(255,122,0,.35)' }}><Icon aria-hidden="true" /></div>
                 <div>
                   <div style={{ fontFamily: 'var(--font-d)', fontSize: 15, fontWeight: 700, color: 'var(--text)', marginBottom: 4 }}>{title}</div>
                   <div style={{ fontFamily: 'var(--font-d)', fontSize: 14, color: 'var(--brand)', fontWeight: 600, marginBottom: 4 }}>{val}</div>
@@ -51,13 +62,7 @@ export default function ContactPage() {
             </div>
             <div className="form-group">
               <label className="label">Subject</label>
-              <select className="input">
-                <option>General Inquiry</option>
-                <option>Order Support</option>
-                <option>Product Feedback</option>
-                <option>Partnership</option>
-                <option>Press / Media</option>
-              </select>
+              <Dropdown className="block" ariaLabel="Subject" value={subject} onChange={setSubject} options={SUBJECTS} />
             </div>
             <div className="form-group">
               <label className="label">Message</label>

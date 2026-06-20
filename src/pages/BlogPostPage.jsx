@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { BLOG_SUMMARIES, getBlogById } from '../data/blogs'
+import { FaLink } from 'react-icons/fa'
 
 export default function BlogPostPage() {
   const { id } = useParams()
@@ -47,9 +48,10 @@ export default function BlogPostPage() {
           <div className="shimmer-line" />
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 48, flexWrap: 'wrap' }}>
             <span style={{ fontFamily: 'var(--font-d)', fontSize: 14, fontWeight: 700, color: 'var(--text)' }}>Share:</span>
-            {['𝕏 Twitter', 'f Facebook', '🔗 Copy Link'].map((label) => (
+            {['𝕏 Twitter', 'f Facebook'].map((label) => (
               <button key={label} className="btn btn-ghost btn-sm">{label}</button>
             ))}
+            <button className="btn btn-ghost btn-sm" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><FaLink aria-hidden="true" /> Copy Link</button>
           </div>
         </div>
 

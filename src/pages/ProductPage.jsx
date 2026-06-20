@@ -4,6 +4,14 @@ import ProductCard from '../components/ProductCard'
 import { useCartActions } from '../context/CartContext'
 import { useToastActions } from '../context/ToastContext'
 import { getProductById, PRODUCTS } from '../data/products'
+import { FaTruck, FaSyncAlt, FaCheckCircle, FaShieldAlt, FaShoppingCart } from 'react-icons/fa'
+
+const BENEFITS = [
+  [FaTruck, 'Free delivery', 'On orders above ₹499'],
+  [FaSyncAlt, '7-day returns', 'Hassle-free'],
+  [FaCheckCircle, '100% genuine', 'Verified'],
+  [FaShieldAlt, 'Vet approved', 'Certified safe'],
+]
 
 const REVIEW_SAMPLES = [
   ['Priya S.', 'Worth every rupee!', 'Excellent quality. My dog loves it.', 5, '👩'],
@@ -94,13 +102,13 @@ export default function ProductPage() {
               </div>
             </div>
             <div style={{ display: 'flex', gap: 12, marginTop: 20, flexWrap: 'wrap' }}>
-              <button className="btn btn-primary" style={{ flex: 1 }} onClick={handleAddToCart}>Add to Cart 🛒</button>
+              <button className="btn btn-primary" style={{ flex: 1, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8 }} onClick={handleAddToCart}>Add to Cart <FaShoppingCart aria-hidden="true" /></button>
               <button className="btn btn-ghost" style={{ flex: 1 }} onClick={() => navigate('/checkout')}>Buy Now →</button>
             </div>
             <div className="product-detail-benefits" style={{ marginTop: 24 }}>
-              {[['🚚', 'Free delivery', 'On orders above ₹499'], ['🔄', '7-day returns', 'Hassle-free'], ['✅', '100% genuine', 'Verified'], ['🛡️', 'Vet approved', 'Certified safe']].map(([icon, title, sub]) => (
+              {BENEFITS.map(([Icon, title, sub]) => (
                 <div key={title} className="card card-p" style={{ padding: '12px 14px', display: 'flex', alignItems: 'center', gap: 10 }}>
-                  <span style={{ fontSize: 20 }}>{icon}</span>
+                  <Icon aria-hidden="true" style={{ fontSize: 20, color: 'var(--brand)', flexShrink: 0 }} />
                   <div>
                     <div style={{ fontFamily: 'var(--font-d)', fontSize: 12, fontWeight: 700, color: 'var(--text)' }}>{title}</div>
                     <div style={{ fontSize: 11, color: 'var(--text3)' }}>{sub}</div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useToast } from '../context/ToastContext'
+import { FaClipboardList, FaMapMarkerAlt, FaRegClock, FaPaperclip, FaLock } from 'react-icons/fa'
 
 export default function ApplyModal({ job, onClose }) {
   const { showToast } = useToast()
@@ -30,13 +31,13 @@ export default function ApplyModal({ job, onClose }) {
         <div className="modal-header">
           <div style={{ flex: 1 }}>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: 'var(--brand-dim)', border: '1px solid var(--brand-border)', borderRadius: 8, padding: '5px 12px', fontFamily: 'var(--font-d)', fontSize: 11, fontWeight: 700, color: 'var(--brand)', marginBottom: 10, letterSpacing: .5, textTransform: 'uppercase' }}>
-              📋 Applying for
+              <FaClipboardList aria-hidden="true" /> Applying for
             </div>
             <div style={{ fontFamily: 'var(--font-d)', fontSize: 21, fontWeight: 800, color: 'var(--text)', letterSpacing: -.5, lineHeight: 1.2, marginBottom: 8 }}>{job.title}</div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
               <span className="badge badge-brand">{job.dept}</span>
-              <span style={{ fontSize: 12, color: 'var(--text3)' }}>📍 {job.loc}</span>
-              <span style={{ fontSize: 12, color: 'var(--text3)' }}>⏱ {job.exp}</span>
+              <span style={{ fontSize: 12, color: 'var(--text3)', display: 'inline-flex', alignItems: 'center', gap: 5 }}><FaMapMarkerAlt aria-hidden="true" style={{ flexShrink: 0 }} /> {job.loc}</span>
+              <span style={{ fontSize: 12, color: 'var(--text3)', display: 'inline-flex', alignItems: 'center', gap: 5 }}><FaRegClock aria-hidden="true" style={{ flexShrink: 0 }} /> {job.exp}</span>
               <span className="badge badge-green">Full-time</span>
             </div>
           </div>
@@ -89,7 +90,7 @@ export default function ApplyModal({ job, onClose }) {
               <div style={{ height: 1, background: 'var(--border)', margin: '8px 0 24px' }} />
               <div style={{ fontFamily: 'var(--font-d)', fontSize: 11, fontWeight: 700, color: 'var(--brand)', letterSpacing: 1, textTransform: 'uppercase', marginBottom: 14 }}>Resume / Portfolio</div>
               <div className="upload-area" style={{ marginBottom: 20 }} onClick={() => showToast('📎', 'Upload clicked', 'Attach your resume PDF')}>
-                <div style={{ fontSize: 28, marginBottom: 8 }}>📎</div>
+                <div style={{ fontSize: 28, marginBottom: 8, color: 'var(--brand)' }}><FaPaperclip aria-hidden="true" /></div>
                 <div style={{ fontFamily: 'var(--font-d)', fontSize: 14, fontWeight: 600, color: 'var(--text)', marginBottom: 4 }}>Drop your resume here or click to browse</div>
                 <div style={{ fontSize: 12, color: 'var(--text3)' }}>PDF, DOCX up to 5MB</div>
               </div>
@@ -109,7 +110,7 @@ export default function ApplyModal({ job, onClose }) {
                 <button className="btn btn-ghost" style={{ flex: 1, borderRadius: 12 }} onClick={onClose}>Cancel</button>
                 <button className="btn btn-primary" style={{ flex: 2, borderRadius: 12 }} onClick={handleSubmit}>Submit Application →</button>
               </div>
-              <p style={{ fontSize: 11, color: 'var(--text3)', textAlign: 'center', marginTop: 12 }}>🔒 Your information is kept private and secure</p>
+              <p style={{ fontSize: 11, color: 'var(--text3)', textAlign: 'center', marginTop: 12, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 6, width: '100%' }}><FaLock aria-hidden="true" style={{ flexShrink: 0 }} /> Your information is kept private and secure</p>
             </>
           )}
         </div>

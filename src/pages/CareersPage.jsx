@@ -1,15 +1,16 @@
 import React, { lazy, Suspense, useState } from 'react'
 import { useToastActions } from '../context/ToastContext'
+import { FaRocket, FaPaw, FaChartLine, FaUmbrellaBeach, FaSpa, FaFlask, FaMapMarkerAlt, FaRegClock } from 'react-icons/fa'
 
 const ApplyModal = lazy(() => import('../components/ApplyModal'))
 
 const PERKS = [
-  ['🚀', 'Move Fast', 'We ship every week. Speed is a competitive advantage.'],
-  ['🐾', 'Pet-First', 'We love pets. Many bring their dogs to the office.'],
-  ['📈', 'Equity', 'Every employee gets meaningful equity.'],
-  ['🌴', 'Remote Friendly', 'Flexible work with quarterly in-person offsites.'],
-  ['💆', 'Well-being', 'Health insurance and mental wellness stipend.'],
-  ['🧪', 'Experiment', 'Every idea gets a fair shot. Data guides decisions.'],
+  [FaRocket, 'Move Fast', 'We ship every week. Speed is a competitive advantage.'],
+  [FaPaw, 'Pet-First', 'We love pets. Many bring their dogs to the office.'],
+  [FaChartLine, 'Equity', 'Every employee gets meaningful equity.'],
+  [FaUmbrellaBeach, 'Remote Friendly', 'Flexible work with quarterly in-person offsites.'],
+  [FaSpa, 'Well-being', 'Health insurance and mental wellness stipend.'],
+  [FaFlask, 'Experiment', 'Every idea gets a fair shot. Data guides decisions.'],
 ]
 
 const JOBS = [
@@ -40,9 +41,9 @@ export default function CareersPage() {
           </div>
 
           <div className="grid-3" style={{ marginBottom: 56 }}>
-            {PERKS.map(([icon, title, desc]) => (
+            {PERKS.map(([Icon, title, desc]) => (
               <div key={title} className="feature-card">
-                <div className="feat-icon" style={{ background: 'var(--brand-dim)', border: '1px solid var(--brand-border)', color: 'var(--brand)' }}>{icon}</div>
+                <div className="feat-icon" style={{ background: 'var(--brand)', color: '#fff', boxShadow: '0 6px 16px rgba(255,122,0,.35)' }}><Icon aria-hidden="true" /></div>
                 <div className="h-sm" style={{ marginBottom: 8 }}>{title}</div>
                 <p className="text-muted" style={{ fontSize: 14 }}>{desc}</p>
               </div>
@@ -58,8 +59,8 @@ export default function CareersPage() {
                     <h3 style={{ fontFamily: 'var(--font-d)', fontSize: 17, fontWeight: 800, color: 'var(--text)', letterSpacing: -0.4, marginBottom: 6 }}>{job.title}</h3>
                     <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
                       <span className="badge badge-brand">{job.dept}</span>
-                      <span style={{ fontSize: 13, color: 'var(--text2)' }}>📍 {job.loc}</span>
-                      <span style={{ fontSize: 13, color: 'var(--text2)' }}>⏱ {job.exp}</span>
+                      <span style={{ fontSize: 13, color: 'var(--text2)', display: 'inline-flex', alignItems: 'center', gap: 5 }}><FaMapMarkerAlt aria-hidden="true" style={{ flexShrink: 0 }} /> {job.loc}</span>
+                      <span style={{ fontSize: 13, color: 'var(--text2)', display: 'inline-flex', alignItems: 'center', gap: 5 }}><FaRegClock aria-hidden="true" style={{ flexShrink: 0 }} /> {job.exp}</span>
                       <span className="badge badge-green">{job.type}</span>
                     </div>
                   </div>

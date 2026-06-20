@@ -1,12 +1,14 @@
 import React from 'react'
 import CtaBlock from '../components/CtaBlock'
+import { FaSatelliteDish, FaHeartbeat, FaStethoscope, FaChartBar, FaApple } from 'react-icons/fa'
+import { FaBowlFood } from 'react-icons/fa6'
 
 const APP_FEATURES = [
-  { icon: '📡', title: 'Live GPS Tracking', desc: 'Real-time map with safe zones and escape alerts' },
-  { icon: '💚', title: 'Health Dashboard', desc: 'Daily activity, sleep quality, and calorie tracking' },
-  { icon: '🥣', title: 'Smart Feeding', desc: 'Schedule and monitor meals with AI portions' },
-  { icon: '🩺', title: 'Vet Connect', desc: 'Book appointments and share health records' },
-  { icon: '📊', title: 'Monthly Reports', desc: 'Detailed analytics for your vet' },
+  { icon: FaSatelliteDish, title: 'Live GPS Tracking', desc: 'Real-time map with safe zones and escape alerts' },
+  { icon: FaHeartbeat, title: 'Health Dashboard', desc: 'Daily activity, sleep quality, and calorie tracking' },
+  { icon: FaBowlFood, title: 'Smart Feeding', desc: 'Schedule and monitor meals with AI portions' },
+  { icon: FaStethoscope, title: 'Vet Connect', desc: 'Book appointments and share health records' },
+  { icon: FaChartBar, title: 'Monthly Reports', desc: 'Detailed analytics for your vet' },
 ]
 
 export default function AppPage() {
@@ -53,9 +55,9 @@ export default function AppPage() {
           <div>
             <h2 className="h-lg" style={{ marginBottom: 32 }}>Everything in one<br />beautiful app</h2>
             <div style={{ marginBottom: 36 }}>
-              {APP_FEATURES.map(({ icon, title, desc }) => (
+              {APP_FEATURES.map(({ icon: Icon, title, desc }) => (
                 <div key={title} className="app-feature-item">
-                  <div className="app-feat-icon">{icon}</div>
+                  <div className="app-feat-icon" style={{ background: 'var(--brand)', color: '#fff' }}><Icon aria-hidden="true" /></div>
                   <div className="app-feat-text">
                     <div className="app-feat-title">{title}</div>
                     <div className="app-feat-desc">{desc}</div>
@@ -64,9 +66,11 @@ export default function AppPage() {
               ))}
             </div>
             <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', marginBottom: 28 }}>
-              {[['🍎','Download on the','App Store'],['▶','Get it on','Google Play']].map(([icon, sub, title]) => (
+              {[[FaApple,'Download on the','App Store'],['▶','Get it on','Google Play']].map(([icon, sub, title]) => (
                 <button key={title} className="store-btn">
-                  <span style={{ fontSize: 24, flexShrink: 0 }}>{icon}</span>
+                  {typeof icon === 'string'
+                    ? <span style={{ fontSize: 24, flexShrink: 0 }}>{icon}</span>
+                    : React.createElement(icon, { 'aria-hidden': 'true', style: { fontSize: 24, flexShrink: 0 } })}
                   <div>
                     <span style={{ fontSize: 10, color: 'var(--text2)', display: 'block', marginBottom: 2 }}>{sub}</span>
                     <span style={{ fontFamily: 'var(--font-d)', fontSize: 15, fontWeight: 800, color: 'var(--text)', display: 'block' }}>{title}</span>
